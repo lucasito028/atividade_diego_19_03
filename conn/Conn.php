@@ -11,11 +11,12 @@
 
         public function conectar(){
             try{
-                
+
                 $this->conn = new PDO("mysql:host=".$this->host.";port=".$this->port.
                 ";dbname=".$this->dbname,$this->user, $this->pass);
 
                 return $this->connect;
+                
             }catch(Exception $err){
                 die("Morri");
                 return false;

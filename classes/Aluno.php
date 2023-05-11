@@ -11,11 +11,5 @@ class Aluno extends Conn{
     public $cod;
     public $nome;
     public $email;
-
-    public function __construct($cod, $nome, $email){
-        $this->cod = $cod;
-        $this->nome = $nome;
-        $this->email = $email;
-    }
     
 }
