@@ -5,7 +5,7 @@ include("../conn/Conn.php");
 class Aluno extends Conn{
 
     //Parte da Conecção
-    public object $connect;
+    public $connect;
 
     //Parte de atributos Necessarios
     public $cod;

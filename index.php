@@ -10,6 +10,7 @@
 <body>
     <?php
 
+    include("conn/Conn.php");
     include("classes/Aluno.php");
     
     ?>
