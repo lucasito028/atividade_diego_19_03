@@ -3,7 +3,7 @@
 class Aluno extends Conn{
 
     //Parte da Conecção
-    public $connect;
+    public object $connect;
 
     //Parte de atributos Necessarios
     public $cod;

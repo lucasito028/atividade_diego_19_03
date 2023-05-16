@@ -7,7 +7,7 @@
         public $pass = "";
         public $dbname = "atividade_de_diego_19";
         public $port = 3307;
-        public $connect = null;
+        public object $connect;
 
         public function conectar(){
             try{
