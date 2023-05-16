@@ -10,8 +10,23 @@
 <body>
     <?php
 
-    include("conn/Conn.php");
-    include("classes/Aluno.php");
+    require './classes/Aluno.php';
+    require './classes/Conn.php';
+    
+    $al = new Aluno();
+    $resp = $al->selecionar();
+
+    foreach($resp as $have){
+
+        extract($have);
+
+        echo"ID $id <br>";
+        echo"Codigo $cod <br>";
+        echo"Nome $nome <br>";
+        echo"Email $email <br>";
+
+
+    }
     
     ?>
 </body>

@@ -1,7 +1,5 @@
 <?php
 
-include("../conn/Conn.php");
-
 class Aluno extends Conn{
 
     //Parte da Conecção
@@ -12,4 +10,19 @@ class Aluno extends Conn{
     public $nome;
     public $email;
     
+    public function selecionar():array
+    {
+        
+        $this -> connect = $this -> conectar();
+        //Query de selecionair
+        $query = "select * from aluno order by id";
+
+        //Parte de preparação banco de dados
+        $result = $this->connect->prepare($query);
+        $result->execute();
+        $resultado = $result->fetchAll();
+        
+        return $resultado;
+
+    }
 }

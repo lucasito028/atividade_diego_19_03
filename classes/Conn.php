@@ -6,7 +6,7 @@
         public $user = "root";
         public $pass = "";
         public $dbname = "atividade_de_diego_19";
-        public $port = 3306;
+        public $port = 3307;
         public $connect = null;
 
         public function conectar(){
@@ -16,12 +16,16 @@
                 ";dbname=".$this->dbname,$this->user, $this->pass);
 
                 return $this->connect;
+                echo"Bananada";
                 
             }catch(Exception $err){
+
                 die("Morri");
                 return false;
+
             }
 
         }
 
     }
+
