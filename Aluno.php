@@ -1,14 +1,15 @@
 <?php
 
+require './Conn.php';
+
 class Aluno extends Conn{
+
 
     //Parte da Conecção
     public object $connect;
 
     //Parte de atributos Necessarios
-    public $cod;
-    public $nome;
-    public $email;
+    public array $form_DT;
     
     public function selecionar():array
     {
@@ -25,4 +26,15 @@ class Aluno extends Conn{
         return $resultado;
 
     }
+
+    public function cadastrar()
+    {
+        var_dump($this->form_DT);
+        $this -> connect = $this -> conectar();
+        //Query de cadastrar
+
+    }
 }
+
+
+    

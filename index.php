@@ -8,12 +8,36 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
-    <?php
 
-    require './classes/Aluno.php';
-    require './classes/Conn.php';
+<?php
+
+    require './Aluno.php';
+    require './Conn.php';
     
     $al = new Aluno();
+
+    $form_data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+    var_dump($form_data);
+
+    if(!empty($form_data['cad'])){
+        $a1->form_DT = $form_data;
+        $value = $a1->cadastrar();
+    }
+    
+
+    ?>
+
+    <form name="cre" method="post">
+
+        <input type="number" name="cod" required>
+        <input type="text" name="nome" required>
+        <input type="text" name="email" required>
+        <input type="submit" values="cadastrar" name="cad">
+
+    </form>
+
+    <?php
+    
     $resp = $al->selecionar();
 
     foreach($resp as $have){
@@ -29,5 +53,6 @@
     }
     
     ?>
+
 </body>
 </html>
