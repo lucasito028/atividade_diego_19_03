@@ -1,6 +1,6 @@
 <?php
-require './Conn.php';
-require './Aluno.php';
+require './classes/Conn.php';
+require './classes/Aluno.php';
 session_start();
 ?>
 
@@ -24,7 +24,9 @@ session_start();
     //var_dump($form_data);
 
     if(!empty($form_data['cad'])){
+
         $a1->form_DT = $form_data;
+
         $value = $a1->cadastrar();
 
         if($value){
@@ -55,7 +57,7 @@ session_start();
 
         extract($have);
 
-        echo"ID $id <br>";
+        echo "ID $id <br>" ;
         echo"Codigo $matricula <br>";
         echo"Nome $nome <br>";
         echo"Email $email <br>";
