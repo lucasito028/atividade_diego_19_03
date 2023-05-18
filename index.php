@@ -1,4 +1,6 @@
 <?php
+require './Conn.php';
+require './Aluno.php';
 session_start();
 ?>
 
@@ -14,9 +16,6 @@ session_start();
 <body>
 
 <?php
-
-    require './Conn.php';
-    require './Aluno.php';
     
     $al = new Aluno();
 
@@ -57,7 +56,7 @@ session_start();
         extract($have);
 
         echo"ID $id <br>";
-        echo"Codigo $cod <br>";
+        echo"Codigo $matricula <br>";
         echo"Nome $nome <br>";
         echo"Email $email <br>";
 
