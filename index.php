@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +15,25 @@
 
 <?php
 
-    require './Aluno.php';
     require './Conn.php';
+    require './Aluno.php';
     
     $al = new Aluno();
 
     $form_data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-    var_dump($form_data);
+
+    //var_dump($form_data);
 
     if(!empty($form_data['cad'])){
         $a1->form_DT = $form_data;
         $value = $a1->cadastrar();
+
+        if($value){
+            echo "AEEEEE";
+        }else{
+            echo "Deu pau";
+        }
+
     }
     
 
