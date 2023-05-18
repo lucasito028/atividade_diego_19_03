@@ -1,7 +1,5 @@
 <?php
 
-require './Conn.php';
-
 class Aluno extends Conn{
 
 
@@ -30,14 +28,17 @@ class Aluno extends Conn{
     public function cadastrar()
     {
         var_dump($this->form_DT);
+
         $this -> connect = $this -> conectar();
+
         //Query de cadastrar
         $q = "INSERT INTO aluno(id, matricula, nome, email) VALUES (:cod, :nome, :email)";
+
         //A conecção prepara
         $add = $this -> connect -> prepare($q);
-        $add -> bindParam(':cod', $this->form_DT->['cod']);
-        $add -> bindParam(':nome', $this->form_DT->['nome']);
-        $add -> bindParam(':email', $this->form_DT->['email']);
+        $add -> bindParam(':cod', $this->form_DT['cod']);
+        $add -> bindParam(':nome', $this->form_DT['nome']);
+        $add -> bindParam(':email', $this->form_DT['email']);
         $add->execute();
 
         if($add -> rowCount()){
