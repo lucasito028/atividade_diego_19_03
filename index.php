@@ -11,6 +11,7 @@ require './classes/Aluno.php';
 
 session_start();
 ob_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +27,8 @@ ob_start();
 
 <?php
     
+    //Cadastrar
+
     $ac = new Aluno();
 
     $form_data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -53,6 +56,7 @@ ob_start();
 
 <?php
     
+    //Alterar
     $at = new Aluno();
 
     $form_data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -108,6 +112,8 @@ ob_start();
     ?>
 
     <?php
+
+    //Selecionar
     $al = new Aluno();
 
     $resp = $al->selecionar();
@@ -130,6 +136,8 @@ ob_start();
 
 <script>
 
+
+//Parte de mudar para alterar
 function alt(){
     document.getElementById("cre").innerHTML = `
         <p>
@@ -156,6 +164,8 @@ function alt(){
         <button onclick="cad()">Cadastrar</button>`;
 }
 
+
+//Parte de mudar Cadastrar
 function cad(){
     document.getElementById("cre").innerHTML = `
     <p>

@@ -5,7 +5,7 @@
         public $host = "localhost";
         public $user = "root";
         public $pass = "";
-        public $dbname = "atividade_de_diego_19";
+        public $dbname = "atv_diego";
         public $port = 3307;
         public object $connect;
 
