@@ -32,7 +32,7 @@ class Aluno extends Conn{
         $this -> connect = $this -> conectar();
 
         //Query de cadastrar
-        $q = "INSERT INTO aluno(id, matricula, nome, email) VALUES (:cod, :nome, :email)";
+        $q = "INSERT INTO aluno(cod, nome, email) VALUES (:cod, :nome, :email)";
 
         //A conecção prepara
         $add = $this -> connect -> prepare($q);
@@ -56,13 +56,14 @@ class Aluno extends Conn{
         $this -> connect = $this -> conectar();
 
         //Query de cadastrar
-        $q = "INSERT INTO aluno(id, matricula, nome, email) VALUES (:cod, :nome, :email)";
+        $q = "UPDATE aluno SET cod = :cod, nome = :nome, email = :email WHERE id = :id";
 
         //A conecção prepara
         $add = $this -> connect -> prepare($q);
         $add -> bindParam(':cod', $this->form_DT['cod']);
         $add -> bindParam(':nome', $this->form_DT['nome']);
         $add -> bindParam(':email', $this->form_DT['email']);
+        $add -> bindParam(':id', $this->form_DT['id']);
         $add->execute();
 
         if($add -> rowCount()){

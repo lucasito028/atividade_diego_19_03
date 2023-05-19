@@ -1,7 +1,16 @@
 <?php
+/*Na parte de alterar só está funcionando a parte do processamento(falo da Classe) mas não está 
+consegundo colocar os dados querendo alterar dentro do "Input"
+
+Ou seja na parte de alterar somente a função(alterar()) da classe aluno está funcionando
+Mas a parte de colocar os dados no input Não
+*/
+
 require './classes/Conn.php';
 require './classes/Aluno.php';
+
 session_start();
+ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +26,7 @@ session_start();
 
 <?php
     
-    $al = new Aluno();
+    $ac = new Aluno();
 
     $form_data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -25,14 +34,16 @@ session_start();
 
     if(!empty($form_data['cad'])){
 
-        $a1->form_DT = $form_data;
+        $ac->form_DT = $form_data;
 
-        $value = $a1->cadastrar();
+        $value = $ac->cadastrar();
 
         if($value){
-            echo "AEEEEE";
+            $_SESSION['msg'] = "<h1>Cadastrado</h1>";
+           
         }else{
-            echo "Deu pau";
+            $_SESSION['msg'] = "Deu ruim<br>";
+
         }
 
     }
@@ -40,32 +51,134 @@ session_start();
 
     ?>
 
-    <form name="cre" method="post">
+<?php
+    
+    $at = new Aluno();
 
-        <input type="number" name="cod" required>
-        <input type="text" name="nome" required>
-        <input type="text" name="email" required>
-        <input type="submit" values="cadastrar" name="cad">
+    $form_data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
+    //var_dump($form_data);
+
+    if(!empty($form_data['alt'])){
+
+        $at -> form_DT = $form_data;
+
+        $value = $at -> alterar();
+
+        if($value){
+            $_SESSION['msg'] = "<h1>Alterado</h1>";
+           
+        }else{
+            $_SESSION['msg'] = "Deu ruim<br>";
+
+        }
+
+    }
+    
+
+    ?>
+
+    <form name="cre" id="cre" method="post">
+
+        <p>
+        <span>Codigo</span>
+        <input type="number" id="cod" name="cod" value = "" required></p>
+
+        <p>
+        <span>Nome</span>
+        <input type="text" id="nome" name="nome" value = "" required></p>
+
+        <p>
+        <span>Email</span>
+        <input type="text" id="email" name="email" value = "" required></p>
+
+        <p>
+        <input type="submit" values="cadastrar" id="cad" name="cad">
+        </p>
+
+        <h3>Se quiser alterar um cadastro tem que clicar num botão</h3>
+        <button onclick="alt()">Alterar</button>
     </form>
 
+
     <?php
-    
+    if(isset($_SESSION['msg'])){
+        echo $_SESSION['msg'];
+    }
+    ?>
+
+    <?php
+    $al = new Aluno();
+
     $resp = $al->selecionar();
 
     foreach($resp as $have){
 
         extract($have);
-
-        echo "ID $id <br>" ;
-        echo"Codigo $matricula <br>";
-        echo"Nome $nome <br>";
-        echo"Email $email <br>";
+        echo '<div id = "sele">';
+        echo '<p id="p">'.$id.'</p>';
+        echo '<p>'.$cod.'</p>';
+        echo '<p>'.$nome.'</p>';
+        echo '<p>'.$email.'</p>';
+        echo '</div>';
+        echo '<br>';
 
 
     }
     
     ?>
+
+<script>
+
+function alt(){
+    document.getElementById("cre").innerHTML = `
+        <p>
+        <span>ID:</span>
+        <input type="number" id="id" name="id" value = "" required></p>
+
+        <p>
+        <span>Codigo</span>
+        <input type="number" id="cod" name="cod" value = "" required></p>
+
+        <p>
+        <span>Nome</span>
+        <input type="text" id="nome" name="nome" value = "" required></p>
+
+        <p>
+        <span>Email</span>
+        <input type="text" id="email" name="email" value = "" required></p>
+
+        <p>
+        <input type="submit" values="cadastrar" id="cad" name="alt">
+        </p>
+        
+        <h3>Se quiser alterar um cadastro tem que clicar num botão</h3>
+        <button onclick="cad()">Cadastrar</button>`;
+}
+
+function cad(){
+    document.getElementById("cre").innerHTML = `
+    <p>
+        <span>Codigo</span>
+        <input type="number" id="cod" name="cod" value = "" required></p>
+
+        <p>
+        <span>Nome</span>
+        <input type="text" id="nome" name="nome" value = "" required></p>
+
+        <p>
+        <span>Email</span>
+        <input type="text" id="email" name="email" value = "" required></p>
+
+        <p>
+        <input type="submit" values="cadastrar" id="cad" name="cad">
+        </p>
+
+        <h3>Se quiser alterar um cadastro tem que clicar num botão</h3>
+        <button onclick="alterar()">Alterar</button>`;
+}
+
+</script>
 
 </body>
 </html>
